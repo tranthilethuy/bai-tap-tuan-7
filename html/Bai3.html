@@ -1,0 +1,185 @@
+<html>
+<head>
+    <title>Register Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+
+        }
+        .register-form {
+            background-color: #e0f7da;
+            border: 1px solid #a0c4a0;
+            padding: 20px;
+            width: 500px;
+
+        }
+        .register-form h2 {
+            text-align: center;
+            color: #26a5a5;
+        }
+        .register-form table {
+            width: 100%;
+            color: #26a5a5;
+        }
+        .register-form table td {
+            padding: 5px;
+        }
+        .register-form input[type="text"],
+        .register-form input[type="password"],
+        .register-form select {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #a0c4a0;
+            border-radius: 3px;
+
+        }
+        .register-form input[type="button"] {
+            padding: 5px 10px;
+            border: 1px solid #a0c4a0;
+            border-radius: 3px;
+            background-color: #f0f8f5;
+            cursor: pointer;
+
+        }
+        .register-form input[type="button"]:hover {
+            background-color: #d2e3c6;
+
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var fullname = document.forms["registerForm"]["fullname"].value;
+            var username = document.forms["registerForm"]["username"].value;
+            var password = document.forms["registerForm"]["password"].value;
+            var confirm_password = document.forms["registerForm"]["confirm_password"].value;
+            var phone = document.forms["registerForm"]["phone"].value;
+            var email = document.forms["registerForm"]["email"].value;
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (fullname == "") {
+                alert("Họ và tên là bắt buộc.");
+                document.forms["registerForm"]["fullname"].focus();
+                return false;
+            }
+            if (username == "" || username.length < 6) {
+                alert("Tên đăng nhập là bắt buộc và phải có ít nhất 6 ký tự.");
+                document.forms["registerForm"]["username"].focus();
+                return false;
+            }
+            if (password == "") {
+                alert("Mật khẩu là bắt buộc.");
+                document.forms["registerForm"]["password"].focus();
+                return false;
+            }
+            if (confirm_password == "" || password != confirm_password) {
+                alert("Xác nhận mật khẩu không khớp.");
+                document.forms["registerForm"]["confirm_password"].focus();
+                return false;
+            }
+            if (isNaN(phone)) {
+                alert("Nhập số điện thoại.");
+                document.forms["registerForm"]["phone"].focus();
+                return false;
+            }
+            if (email != "" && !emailPattern.test(email)) {
+                alert("Email không đúng mẫu.");
+                document.forms["registerForm"]["email"].focus();
+                return false;
+            }
+
+            // If all validations pass, redirect to thongtin.htm
+            window.location.href = "thongtin.htm";
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="register-form">
+        <h2>Register Form</h2>
+        <form name="registerForm" onsubmit="return validateForm()">
+            <table>
+                <tr>
+                    <td>Họ và tên (*):</td>
+                    <td><input type="text" name="fullname"></td>
+                </tr>
+                <tr>
+                    <td>Tên Đăng nhập (*):</td>
+                    <td><input type="text" name="username"></td>
+                </tr>
+                <tr>
+                    <td>Mật khẩu (*):</td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td>Xác nhận mật khẩu (*):</td>
+                    <td><input type="password" name="confirm_password"></td>
+                </tr>
+                <tr>
+                    <td>Ngày sinh:</td>
+                    <td>
+                        <select name="day">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                        Tháng:
+                        <select name="month">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                        Năm:
+                        <select name="year">
+                            <option value="1940">1940</option>
+                            <!-- Add other years as needed -->
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Điện thoại:</td>
+                    <td><input type="text" name="phone"></td>
+                </tr>
+                <tr>
+                    <td>Địa chỉ:</td>
+                    <td><input type="text" name="address"></td>
+                </tr>
+                <tr>
+                    <td>Email khác:</td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                    <td>Sở thích:</td>
+                    <td>
+                        <select name="hobby">
+                            <option value="Ca Nhạc">Ca Nhạc</option>
+                            <!-- Add other hobbies as needed -->
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <input type="submit" value="Dang Ky">
+                        <input type="button" value="Huy" onclick="document.forms['registerForm'].reset();">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
